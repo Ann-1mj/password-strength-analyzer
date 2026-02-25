@@ -39,6 +39,14 @@ function analyzePassword() {
     document.getElementById("crackTimeText").innerText =
         "Estimated brute-force crack time (at 1B guesses/sec): " +
         formatTime(seconds);
+
+    let percentage = Math.min((entropy / 100) * 100, 100);
+let fill = document.getElementById("strengthFill");
+fill.style.width = percentage + "%";
+
+if (entropy < 36) fill.style.backgroundColor = "#ef4444";
+else if (entropy < 60) fill.style.backgroundColor = "#facc15";
+else fill.style.backgroundColor = "#22c55e";
 }
 
 function formatTime(seconds) {
